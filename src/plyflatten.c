@@ -65,6 +65,7 @@ static void add_ply_points_to_images(struct images *x,
 	{
 		int i = rescale_float_to_int(fbuf[0], xmin, xmax, x->w);
 		int j = rescale_float_to_int(fbuf[1], ymin, ymax, x->h);
+		j = x->h - 1 - j;
 		//fprintf(stderr, "\t%8.8lf %8.8lf %8.8lf %d %d\n",
 		//		fbuf[0], fbuf[1], fbuf[2], i, j);
 		add_height_to_images(x, i, j, fbuf[2]);
