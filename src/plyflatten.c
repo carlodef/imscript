@@ -80,10 +80,10 @@ static void add_ply_points_to_images(struct images *x,
 int main(int c, char *v[])
 {
 	// process input arguments
-	if (c != 8) {
+	if (c != 7) {
 		fprintf(stderr, "usage:\n\t"
-				"ls files|%s x0 xf y0 yf w h out.tiff\n", *v);
-		//                         0 1  2  3  4  5 6 7
+				"ls files|%s x0 xf y0 yf w out.tiff\n", *v);
+		//                 0 1  2  3  4  5 6 7
 		return 1;
 	}
 	float xmin = atof(v[1]);
@@ -91,8 +91,8 @@ int main(int c, char *v[])
 	float ymin = atof(v[3]);
 	float ymax = atof(v[4]);
 	int w = atoi(v[5]);
-	int h = atoi(v[6]);
-	char *filename_out = v[7];
+	int h = w * (ymax - ymin) / (xmax - xmin);
+	char *filename_out = v[6];
 
 	// allocate and initialize output images
 	struct images x;
