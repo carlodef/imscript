@@ -44,6 +44,18 @@ static float laplacian(float *x, int w, int h, int i, int j)
 	return r;
 }
 
+// evaluate the laplacian of image x at point i, j
+static float bilaplacian(float *x, int w, int h, int i, int j)
+{
+	float r = -4 * laplacian(x, w, h, i  , j  )
+		     + laplacian(x, w, h, i+1, j  )
+		     + laplacian(x, w, h, i  , j+1)
+		     + laplacian(x, w, h, i-1, j  )
+		     + laplacian(x, w, h, i  , j-1);
+
+	return r;
+}
+
 // returns the largest change performed all over the image
 static float perform_one_iteration(float *x, int w, int h,
 		int (*mask)[2], int nmask, float tstep)
@@ -55,7 +67,7 @@ static float perform_one_iteration(float *x, int w, int h,
 		int j = mask[p][1];
 		int idx = j*w + i;
 
-		float new = x[idx] + tstep * laplacian(x, w, h, i, j);
+		float new = x[idx] + tstep * bilaplacian(x, w, h, i, j);
 
 		float update = fabs(x[idx] - new);
 		if (update > maxupdate)

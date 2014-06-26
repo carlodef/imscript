@@ -1,3 +1,6 @@
+// take a series of ply files and produce a digital elevation map
+
+
 #include <math.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -70,7 +73,6 @@ static void add_ply_points_to_images(struct images *x,
 		//		fbuf[0], fbuf[1], fbuf[2], i, j);
 		add_height_to_images(x, i, j, fbuf[2]);
 	}
-
 
 	fclose(f);
 }

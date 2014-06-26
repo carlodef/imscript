@@ -5,7 +5,7 @@
 // 	2. match them exhaustively, using t=290, r=inf
 // 	3. find a ransac cluster H of these pairs, n=10000, m=30, e=2
 // 	4. apply H to the keypoints of the second image
-// 	5. math the resulting points exhaustively, using t=290, r=2
+// 	5. match the resulting points exhaustively, using t=290, r=2
 // 	6. output the resulting list of matches
 
 
@@ -175,14 +175,17 @@ int main(int c, char *v[])
 	struct ann_pair *pairs;
 	float t = atof(v[1]);
 	int top = atoi(v[4]);
-	float rad = atoi(v[5]);
+	float rad = atof(v[5]);
 	char *filename_pairs = v[6];
 	char *filename_omask = v[7];
 	char *filename_hom = v[8];
 	float h[9] = {0};
 	bool *omask = xmalloc(n[0]*sizeof*omask);
 	FORI(n[0]) omask[i] = false;
+
+	fprintf(stderr, "input read\n");
 	pairs = srmatch(&npairs, omask, h, p[0],n[0], p[1],n[1], t,top,rad,rad);
+
 	fprintf(stderr, "H = "); FORI(9) fprintf(stderr, "%g%c", h[i], (i==8)?'\n':' ');
 	fprintf(stderr, "SIFTCPAIRS: produced %d pairs "
 			"(from %d and %d){%d}[%g%%]\n",
