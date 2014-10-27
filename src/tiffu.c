@@ -1109,7 +1109,7 @@ int main(int c, char *v[])
 	//TIFFSetErrorHandler(my_tifferror);
 
 	if (c < 2) {
-	err:	fprintf(stderr, "usage:\n\t%s {info|ntiles|tget|tput}\n", *v);
+	err:	fprintf(stderr, "usage:\n\t%s {info|imprintf|ntiles|tget|tput|tzero|crop|whatever}\n", *v);
 		return 1;
 	}
 
