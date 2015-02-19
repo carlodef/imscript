@@ -1163,11 +1163,11 @@ static void fill_subs_cmdline(char *cmdline, char *cmd, char *fprefix,
 					"command line\n");
 			exit(1);
 		} else if (*tok == MARKER_INPUT) {
-			int idx = atoi(tok+1)-1;
+			int idx = atoi(tok+1);
 			if (idx >= 0 && idx < n_in)
 			add_item_to_cmdline(cmdline, bn(fns_in[idx]), fprefix);
 		} else if (*tok == MARKER_OUTPUT) {
-			int idx = atoi(tok+1)-1;
+			int idx = atoi(tok+1);
 			if (idx >= 0 && idx < n_out)
 			add_item_to_cmdline(cmdline, bn(fns_out[idx]), fprefix);
 		} else
